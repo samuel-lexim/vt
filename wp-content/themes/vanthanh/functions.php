@@ -178,3 +178,36 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// =========================== START CUSTOMIZE
+
+/* Disable WordPress Admin Bar for all users */
+add_filter('show_admin_bar', '__return_false');
+
+
+// Add slug column for PAGE posts
+add_filter( "manage_page_posts_columns", "page_columns" );
+function page_columns( $columns ) {
+	$add_columns = array(
+		'slug' => 'Slug',
+	);
+	$res = array_slice( $columns, 0, 2, true ) +
+	       $add_columns +
+	       array_slice( $columns, 2, count( $columns ) - 1, true );
+
+	return $res;
+}
+
+add_action( "manage_page_posts_custom_column", "my_custom_page_columns" );
+function my_custom_page_columns( $column ) {
+	global $post;
+	switch ( $column ) {
+		case 'slug' :
+			echo $post->post_name;
+			break;
+	}
+}
+
+add_filter( "manage_post_posts_columns", "page_columns" );
+add_action( "manage_post_posts_custom_column", "my_custom_page_columns" );
+
+// END - Add slug column for PAGE posts
