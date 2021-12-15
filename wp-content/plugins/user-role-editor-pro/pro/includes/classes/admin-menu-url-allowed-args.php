@@ -171,29 +171,29 @@ class URE_Admin_Menu_URL_Allowed_Args {
     }
     
 				
-    static	private	function	get_for_tools()	{
+    static private function get_for_tools() {
 
-								$args	=	array(''	=>	array());
+	$args = array('' => array());
 
-								return	$args;
-				}
-				// end of get_for_tools()
-    
-    
-    static	private	function	get_for_settings()	{
+        return $args;
+    }
+    // end of get_for_tools()
+
+
+    static private function get_for_settings() {
 
         $plugins = array(
             'wp-mail-smtp'
         );
-								$args	=	array();
+        $args = array();
         self::get_for_supported_plugins($args, $plugins, 'settings');
 
-								return	$args;
-				}
-				// end of get_for_settings()
+        return $args;
+    }
+    // end of get_for_settings()
 
 
-				static private function get_for_admin() {
+    static private function get_for_admin() {
                 
         $plugins = array(
             'contact-form-7',
@@ -319,40 +319,37 @@ class URE_Admin_Menu_URL_Allowed_Args {
     
     
     static public function get($command) {
-        
+
         $edit = self::get_for_edit();
         $edit_tags = self::get_for_edit_tags();
         $edit_comments = self::get_for_edit_comments();
-        $post_new = self::get_for_post_new();                
+        $post_new = self::get_for_post_new();
         $upload = self::get_for_upload();
         $nav_menus = self::get_for_nav_menus();
         $users = self::get_for_users();
-								$tools = self::get_for_tools();
+        $tools = self::get_for_tools();
         $settings = self::get_for_settings();
         $admin = self::get_for_admin();
-        
+
         $args0 = array(
-            'edit.php'=>$edit,  
-            'edit-tags.php'=>$edit_tags,
-            'edit-comments.php'=>$edit_comments,
-            'post-new.php'=>$post_new,            
-            'upload.php'=>$upload,
-            'nav-menus.php'=>$nav_menus,
-            'users.php'=>$users,
-												'tools.php'=>$tools,
-            'options-general.php'=>$settings,
-            'admin.php'=>$admin
+            'edit.php' => $edit,
+            'edit-tags.php' => $edit_tags,
+            'edit-comments.php' => $edit_comments,
+            'post-new.php' => $post_new,
+            'upload.php' => $upload,
+            'nav-menus.php' => $nav_menus,
+            'users.php' => $users,
+            'tools.php' => $tools,
+            'options-general.php' => $settings,
+            'admin.php' => $admin
         );
         $args1 = self::add_args_from_white_list($args0);
         $args2 = apply_filters('ure_admin_menu_access_allowed_args', $args1);
-        
+
         $result = isset($args2[$command]) ? $args2[$command] : array();
-        
+
         return $result;
-        
     }
     // end of get()
-        
-
 }
 // end of class URE_Admin_Menu_URL_Allowed_Args

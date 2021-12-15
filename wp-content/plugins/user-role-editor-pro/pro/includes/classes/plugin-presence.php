@@ -24,6 +24,7 @@ class URE_Plugin_Presence {
         'visual-composer'=>'js_composer/js_composer.php',
         'woocommerce'=>'woocommerce/woocommerce.php',
         'woocommerce-bookings'=>'woocommerce-bookings/woocommmerce-bookings.php',
+        'wordpress-seo'=>'wordpress-seo/wp-seo.php',
         'wp-mail-smtp'=>'wp-mail-smtp/wp_mail_smtp.php',
         'wpml'=>'sitepress-multilingual-cms/sitepress.php',
         'wcmp'=>'dc-woocommerce-multi-vendor/dc_product_vendor.php'

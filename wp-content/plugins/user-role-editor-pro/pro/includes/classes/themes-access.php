@@ -149,9 +149,9 @@ class URE_Themes_Access {
 
         
         wp_enqueue_script('jquery-ui-dialog', '', array('jquery-ui-core', 'jquery-ui-button', 'jquery') );
-        wp_register_script('ure-jquery-multiple-select', plugins_url('/js/'. $ms_file_name, URE_PLUGIN_FULL_PATH ) );
+        wp_register_script('ure-jquery-multiple-select', plugins_url('/js/'. $ms_file_name, URE_PLUGIN_FULL_PATH ), array(), URE_VERSION );
         wp_enqueue_script('ure-jquery-multiple-select');
-        wp_register_script('ure-user-profile-themes', plugins_url('/pro/js/user-profile-themes.js', URE_PLUGIN_FULL_PATH ) );
+        wp_register_script('ure-user-profile-themes', plugins_url('/pro/js/user-profile-themes.js', URE_PLUGIN_FULL_PATH ), array(), URE_VERSION );
         wp_enqueue_script('ure-user-profile-themes');
         wp_localize_script('ure-user-profile-themes', 'ure_pro_data_themes', array(
             'wp_nonce' => wp_create_nonce('user-role-editor'),

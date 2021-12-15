@@ -54,7 +54,7 @@ class URE_Posts_Edit_Access_View {
         } else {    // show form with data for currently selected role at User Role Editor dialog window
 ?>
 <form name="ure_posts_edit_access_form" id="ure_posts_edit_access_form" method="POST"
-      action="<?php echo URE_WP_ADMIN_URL . URE_PARENT .'?page=users-'. URE_PLUGIN_FILE;?>" >
+      action="<?php echo admin_url() . URE_PARENT .'?page=users-'. URE_PLUGIN_FILE;?>" >
 <?php
         }
 ?>        

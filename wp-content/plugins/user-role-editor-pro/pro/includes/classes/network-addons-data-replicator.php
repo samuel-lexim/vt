@@ -109,7 +109,10 @@ class URE_Network_Addons_Data_Replicator {
         $this->addons = array();
         foreach( $all_addons as $addon ) {
             $replicator_id = URE_Addons_Manager::get_replicator_id( $addon->id );
-            $replicate = filter_input( INPUT_POST, $replicator_id, FILTER_SANITIZE_NUMBER_INT );
+            if ( !isset( $_POST['values'][$replicator_id] ) ) {
+                continue;
+            }
+            $replicate = filter_var( $_POST['values'][$replicator_id], FILTER_SANITIZE_NUMBER_INT );
             if ( $replicate ) {
                 $addon->data = self::get_addon_data( $addon->access_data_key );
                 $this->addons[$addon->id] = $addon;

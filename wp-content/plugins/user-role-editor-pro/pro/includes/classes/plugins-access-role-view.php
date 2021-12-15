@@ -45,7 +45,7 @@ class URE_Plugins_Access_Role_View extends URE_Plugins_Access_View {
         ob_start();
 ?>
     <form name="ure_plugins_access_form" id="ure_plugins_access_form" method="POST"
-        action="<?php echo URE_WP_ADMIN_URL . ($network_admin ? 'network/':'') . URE_PARENT .'?page=users-'.URE_PLUGIN_FILE;?>" >
+        action="<?php echo admin_url() . ($network_admin ? 'network/':'') . URE_PARENT .'?page=users-'.URE_PLUGIN_FILE;?>" >
 <?php        
         echo URE_Plugins_Access_View::get_model_html($selection_model);
         echo '<hr/>';

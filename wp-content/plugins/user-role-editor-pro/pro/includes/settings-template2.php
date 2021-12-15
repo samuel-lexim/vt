@@ -105,6 +105,21 @@ $admin_menu_access_url_args_link_display = $activate_admin_menu_access_module==1
         <td>
         </td>
       </tr>
+<?php
+/*
+?>
+      <tr>
+        <td>
+            <input type="checkbox" name="activate_import_roles_csv" id="activate_import_roles_csv" value="1" 
+                <?php checked( $activate_import_roles_csv, 1 ); ?> /> 
+            <label for="activate_import_roles_csv"><?php esc_html_e('Activate import user roles from CSV', 'user-role-editor'); ?></label>
+        </td>
+        <td>
+        </td>
+      </tr>
+ * 
+ */
+?>      
       <tr>
           <td cospan="2"><h3><?php esc_html_e('Content editing restrictions', 'user-role-editor');?></h3></td>
       </tr>

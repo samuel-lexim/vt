@@ -1,4 +1,4 @@
-User Role Editor Pro WordPress plugin
+User Role Editor WordPress plugin
 
 Copyright 2009-2020 by Vladimir Garagulya - support@role-editor.com
 
@@ -21,7 +21,7 @@ permission notices:
 
   WordPress - Web publishing software
 
-  Copyright 2003-2020 by the contributors
+  Copyright 2003-2021 by the contributors
 
   WordPress is released under the GPL
 

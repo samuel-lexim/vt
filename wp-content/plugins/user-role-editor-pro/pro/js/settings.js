@@ -58,11 +58,29 @@ jQuery(function() {
     
     jQuery('#ure_export_roles_csv_button').button({
         label: ure_settings_data_pro.export_button
-    }).click(function (event) {
+    }).on('click', (function (event) {
         event.preventDefault();
-        jQuery('#ure_export_roles_csv_form').submit();
-    });
+        jQuery('#ure_export_roles_csv_form').trigger('submit');
+    }));
 
+    jQuery("#ure_import_roles_csv_button").button({
+        label: ure_data.import_roles
+    }).on('click', (function(event) {
+        event.preventDefault();
+        var file_name = jQuery('#roles_file').val();
+        if (file_name == '') {
+            alert(ure_data.select_file_with_roles);
+            return false;
+        }                    
+        var form = jQuery('#ure_import_roles_csv_form');
+        form.attr('action', ure_data.page_url);
+        jQuery("<input type='hidden'>")
+                .attr("name", 'ure_nonce')
+                .attr("value", ure_data.wp_nonce)
+                .appendTo(form);
+        form.submit();
+    }));
+    
 });
 
 
@@ -282,18 +300,18 @@ ure_admin_menu_access_url_args = {
             $('#extract_args_button').button({
                 label: ure_settings_data_pro.extract_button,
                 disabled: true
-            }).click(function(event) {
+            }).on('click', (function(event) {
                 event.preventDefault();
                 ure_admin_menu_access_url_args.extract();
-            });
+            }));
           
             $('#update_allowed_args_button').button({
                 label: ure_settings_data_pro.update_button,
                 disabled: true
-            }).click(function(event) {
+            }).on('click', (function(event) {
                 event.preventDefault();
                 ure_admin_menu_access_url_args.update();
-            });
+            }));
             
             ure_admin_menu_access_url_args.table_rows_clickable();
         });
@@ -334,7 +352,7 @@ ure_admin_menu_access_url_args = {
     },
     
     table_rows_clickable: function () {
-        jQuery('#ure_admin_menu_access_table tr').click(function () {
+        jQuery('#ure_admin_menu_access_table tr').on('click', (function () {
             var selected = jQuery(this).hasClass('ure_table_row_selected');
             jQuery("#ure_admin_menu_access_table tr").removeClass('ure_table_row_selected');
             if (!selected) {
@@ -349,7 +367,7 @@ ure_admin_menu_access_url_args = {
                 jQuery('#extract_args_button').button('enable');
             }
             ure_admin_menu_access_url_args.selected_row_id = this.id;
-        });
+        }));
     }
 
 };

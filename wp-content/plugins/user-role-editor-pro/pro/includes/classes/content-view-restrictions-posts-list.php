@@ -323,7 +323,7 @@ class URE_Content_View_Restrictions_Posts_List {
 
     public function hide_prohibited_pages( $pages ) {
         
-        if ( is_admin() ) {   // execute for front-end only
+        if ( is_admin() && !wp_doing_ajax() ) {   // execute for front-end only
             return $pages;
         }
         
@@ -936,7 +936,7 @@ private function check_roles_for_prohibited($roles, $post_id=0 ) {
     
     public function hide_prohibited_posts( $wp_query ) {
                 
-        if ( is_admin() ) {   // execute for front-end only
+        if ( is_admin() && !wp_doing_ajax() ) {   // execute for front-end only
             return;
         }        
         
@@ -983,7 +983,7 @@ private function check_roles_for_prohibited($roles, $post_id=0 ) {
     public function hide_prohibited_posts2($where, $query) {
         global $wpdb;        
         
-        if ( is_admin() ) {   // execute for front-end only
+        if ( is_admin() && !wp_doing_ajax() ) {   // execute for front-end only
             return $where;
         }        
         if ( $this->lib->is_super_admin() ) { // no limits for super admin
@@ -1008,7 +1008,7 @@ private function check_roles_for_prohibited($roles, $post_id=0 ) {
     
     public function update_adjacent_post_where($where, $in_same_term, $excluded_terms, $taxonomy=null, $post=null) {
         
-        if ( is_admin() ) {   // execute for front-end only
+        if ( is_admin() && !wp_doing_ajax() ) {   // execute for front-end only
             return $where;
         }        
         if ( $this->lib->is_super_admin() ) { // no limits for super admin
@@ -1079,7 +1079,7 @@ private function check_roles_for_prohibited($roles, $post_id=0 ) {
         if ($slug!=='content' && $name!=='product') {
             return $template;
         }
-        if (is_admin()) {   // execute for front-end only
+        if ( is_admin() && !wp_doing_ajax() ) {   // execute for front-end only
             return $template;
         }        
         if ($this->lib->is_super_admin()) { // no limits for super admin

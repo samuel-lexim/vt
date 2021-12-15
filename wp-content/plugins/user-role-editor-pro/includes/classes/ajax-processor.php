@@ -96,20 +96,39 @@ class URE_Ajax_Processor {
     // end of add_role()
     
     
+    protected function update_role() {
+        
+        $editor = URE_Editor::get_instance();
+        $response = $editor->update_role();                
+        
+        $answer = array(
+            'result'=>$response['result'], 
+            'role_id'=>$response['role_id'],  
+            'role_name'=>$response['role_name'],
+            'message'=>$response['message']
+                );
+        
+        return $answer;
+    }
+    // end of add_role()
+
+        
     protected function add_capability() {
         
-        $notification = URE_Capability::add( 'role' );
+        $response = URE_Capability::add( 'role' );
         $editor = URE_Editor::get_instance();
         $editor->init1();
         $message = $editor->init_current_role_name();
-        if (empty( $message ) ) {
+        if ( empty( $message ) ) {
             $view = new URE_View();        
             $html = $view->_show_capabilities( true, true );
         } else {
             $html = '';
+            $response['result'] = 'error';
+            $response['message'] = $message;
         }
         
-        $answer = array('result'=>'success', 'html'=>$html, 'message'=>$notification);
+        $answer = array('result'=>$response['result'], 'html'=>$html, 'message'=>$response['message']);
         
         return $answer;
     }
@@ -281,6 +300,9 @@ class URE_Ajax_Processor {
     protected function _dispatch() {
         
         switch ($this->action) {
+            case 'update_role':
+                $answer = $this->update_role();
+                break;
             case 'add_role':
                 $answer = $this->add_role();
                 break;

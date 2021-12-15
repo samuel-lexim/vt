@@ -18,8 +18,7 @@ class URE_Posts_Edit_Access {
     
         $this->lib = URE_Lib_Pro::get_instance();        
         new URE_Posts_Edit_Access_Role();
-        new URE_Posts_Edit_Access_Bulk_Action();
-        $this->user = new URE_Posts_Edit_Access_User($this);                        
+        new URE_Posts_Edit_Access_Bulk_Action();                                
         
         add_action( 'init', array($this, 'set_hooks_general') );
         add_action( 'admin_init', array($this, 'set_hooks_admin') );
@@ -39,6 +38,11 @@ class URE_Posts_Edit_Access {
     
     public function set_hooks_admin() {
                 
+        $wpcf7_active = URE_Plugin_Presence::is_active('contact-form-7');
+        if ( $wpcf7_active ) {
+            add_filter('wpcf7_map_meta_cap', array($this, 'wpcf7_map_meta_cap'), 10, 1 );
+        }
+        
         $wc_bookings_active = URE_Plugin_Presence::is_active('woocommerce-bookings');   // Woocommerce Bookings plugin 
         if ($wc_bookings_active) {
             URE_WC_Bookings::separate_user_transients();            
@@ -75,6 +79,9 @@ class URE_Posts_Edit_Access {
         
 
     public function set_hooks_general() {
+                
+        // use init action in order have current user initialized already
+        $this->user = new URE_Posts_Edit_Access_User( $this );
         
         // restrict categories available for selection at the post editor
         add_filter('list_terms_exclusions', array($this, 'exclude_terms'));        
@@ -264,9 +271,7 @@ class URE_Posts_Edit_Access {
             
     
     public function block_edit_post($caps, $cap='', $user_id=0, $args=array()) {
-        
-        // return $caps;   // Debugging!!!
-        
+               
         $current_user_id = get_current_user_id();
         if ($current_user_id==0) {
             return $caps;
@@ -309,6 +314,9 @@ class URE_Posts_Edit_Access {
             return $caps;
         }
         
+        if ( empty( $this->user ) ) {
+            $this->user = new URE_Posts_Edit_Access_User( $this );
+        }
         $posts_list = $this->user->get_posts_list( $post->post_type );
         if (count($posts_list)==0) {        
             return $caps;
@@ -369,6 +377,13 @@ class URE_Posts_Edit_Access {
     private function should_apply_restrictions_to_wp_page() {
     
         global $pagenow;
+        
+        if ( $pagenow=='admin.php') {
+            $page = $this->lib->get_request_var('page', 'get');
+            if ( $page=='wpcf7') {
+                return true;
+            }
+        }
         
         if ( !( $pagenow=='edit.php' || $pagenow=='upload.php' ||
             ( $pagenow=='admin-ajax.php' && !empty($_POST['action']) && $_POST['action']=='query-attachments' ) ) ) {
@@ -449,7 +464,11 @@ class URE_Posts_Edit_Access {
             $restrict_it = apply_filters('ure_restrict_edit_post_type', $query->query['post_type'] );
             if ( empty( $restrict_it ) ) {
                 return;
-            }         
+            } 
+            // Do not restrict custom post types created by "Advanced custom post fields" plugin
+            if ( $query->query['post_type']=='acf-field' || $query->query['post_type']=='acf-field-group') {
+                return;
+            }
         }
         
         if ( $query->query['post_type']=='attachment' ) {
@@ -491,19 +510,22 @@ class URE_Posts_Edit_Access {
             return $pages;
         }
         
-        $posts_list = $this->user->get_posts_list( 'page' );
-        if ( count( $posts_list )==0 ) {
-            return $pages;
-        } 
-        
         $restriction_type = $this->user->get_restriction_type();
+        $posts_list = $this->user->get_posts_list( 'page' );
+        if ( count( $posts_list )==0 ) {    // Allow
+            if ($restriction_type==1) {
+                return array(); // There is no available pages
+            } else {    // Prohibit
+                return $pages;  //  All pages are available
+            }
+            
+        }                 
         
         $pages1 = array();
         foreach($pages as $page) {
             if ($restriction_type==1) { // Allow: not edit others
                 if (in_array($page->ID, $posts_list)) {    // not edit others
-                    $pages1[] = $page;
-                    
+                    $pages1[] = $page;                    
                 }
             } else {    // Prohibit: Not edit these
                 if (!in_array($page->ID, $posts_list)) {    // not edit these
@@ -548,19 +570,25 @@ class URE_Posts_Edit_Access {
     
     
     private function calc_terms_to_exclude( $terms_list_str ) {
-        
+                
         $restriction_type = $this->user->get_restriction_type();
-        if ($restriction_type == 1) {   // allow
+        if ($restriction_type == 1) {   // allow         
             // exclude all except included to the list
             remove_filter('list_terms_exclusions', array($this, 'exclude_terms'));  // delete our filter in order to avoid recursion when we call get_all_category_ids() function            
             $taxonomies = array_keys(get_taxonomies(array('public'=>true, 'show_ui'=>true), 'names')); // get array of registered taxonomies names (public only)
+            
+            // Use this filter to fully exclude selected taxonomites from edit restrictions
+            $taxonomies = apply_filters('ure_post_edit_access_restricted_taxonomies', $taxonomies);
+            
             $all_terms = get_terms($taxonomies, array('fields'=>'ids', 'hide_empty'=>0)); // take full categories list from WordPress
             add_filter('list_terms_exclusions', array($this, 'exclude_terms'));  // restore our filter back            
-            $terms_list = explode(',', str_replace(' ', '', $terms_list_str));                        
-            $terms_to_exclude = array_diff($all_terms, $terms_list); // delete terms ID, to which we allow access, from the full terms list                        
+            $terms_list = explode(',', str_replace(' ', '', $terms_list_str));
+            $allowed_terms_list = apply_filters('ure_post_edit_access_allowed_terms', $terms_list );
+            $terms_to_exclude = array_diff($all_terms, $allowed_terms_list); // delete terms ID, to which we allow access, from the full terms list
         } else {    // prohibit
             $terms_to_exclude = explode(',', str_replace(' ', '', $terms_list_str));
-        }
+        }   
+        $terms_to_exclude = apply_filters('ure_post_edit_access_terms_to_exclude', $terms_to_exclude, $restriction_type );
         $terms_to_exclude_str = URE_Base_Lib::esc_sql_in_list('int', $terms_to_exclude);
         
         return $terms_to_exclude_str;
@@ -568,10 +596,9 @@ class URE_Posts_Edit_Access {
     // end of calc_terms_to_exclude()
     
 
-    public function exclude_terms( $exclusions ) {
-        
+    public function exclude_terms( $exclusions ) {        
         global $pagenow, $post_type;
-        
+                
         $restricted_pages = array('edit.php', 'post.php', 'post-new.php');
         if ( !in_array( $pagenow, $restricted_pages ) ) {
             if ( !isset( $_SERVER['HTTP_REFERER'] ) ) {
@@ -721,6 +748,16 @@ class URE_Posts_Edit_Access {
                                         
     }
     // end of auto_assign_term()
+
+
+    public function wpcf7_map_meta_cap( $meta_caps ) {
+    
+        $meta_caps['edit_others_wpcf7_contact_forms'] = 'edit_others_pages';
+        $meta_caps['edit_published_wpcf7_contact_forms'] = 'edit_published_pages';
+        
+        return $meta_caps;
+    }
+    // end of wpcf7_map_meta_cap()
     
 }
 // end of URE_Posts_Edit_Access

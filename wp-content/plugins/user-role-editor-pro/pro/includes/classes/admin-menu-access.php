@@ -49,6 +49,9 @@ class URE_Admin_Menu_Access {
     private function menu_items_cleanup() {        
         global $menu, $submenu;
         
+        if ( !is_array( $submenu ) ) {
+            return;
+        }
         foreach ( $submenu as $key => $item ) {
             foreach ( $item as $key1 => $item1 ) {
                 if ( empty( $item1 ) ) {
@@ -56,7 +59,10 @@ class URE_Admin_Menu_Access {
                 }
             }
         }
-
+        
+        if ( !is_array( $menu ) ) {
+            return;
+        }
         foreach ( $menu as $key => $item ) {
             if ( isset( $submenu[$item[2]] ) && empty( $submenu[$item[2]] ) ) {
                 unset( $menu[$key] );
@@ -395,6 +401,20 @@ class URE_Admin_Menu_Access {
     // end of update_wcmp_menu()
     
     
+    /*
+     * Remove top menu item of Yoast SEO in case all submenu items were blocked and or not available
+     */
+    private function check_wpseo_menu() {
+        global $menu, $submenu;
+        
+        if ( isset( $menu['99.31337'] ) && !isset( $submenu['wpseo-dashboard'] ) ) {
+            unset( $menu['99.31337'] );
+        }
+            
+    }
+    // end of check_wpseo_menu()
+    
+    
     private function remove_blocked_menu_items() {
         global $menu;
                         
@@ -413,6 +433,10 @@ class URE_Admin_Menu_Access {
         if (URE_Plugin_Presence::is_active('wcmp') && !current_user_can('manage_woocommerce')) {
             $this->update_wcmp_menu($menu_copy, $submenu_copy);
         }
+        if (URE_Plugin_Presence::is_active('wordpress-seo') && !current_user_can('wpseo_manage_options')) {
+            $this->check_wpseo_menu();
+        }
+        
         $this->remove_from_submenu($blocked, $submenu_copy);
 
         foreach($menu as $key=>$menu_item) {
@@ -885,14 +909,19 @@ class URE_Admin_Menu_Access {
     // end of is_command_allowed()
     
     
-    private function exclusion_for_not_selected($command, $allowed) {
+    private function exclusion_for_not_selected( $command, $allowed ) {
         
-        if ($this->is_blocked_not_selected_menu_item($command)) {
+        if ( $this->is_blocked_not_selected_menu_item( $command ) ) {
             return false;
         }
         
         // if command was not selected but it does not match with any admin menu (submenu) item - do not block it
-        if (!$this->command_from_main_menu($command)) {
+        if ( !$this->command_from_main_menu( $command ) ) {
+            return true;
+        }
+        
+        $not_block = apply_filters( 'ure_admin_menu_access_not_block_url', false, $command );
+        if ( $not_block ) {
             return true;
         }
         
@@ -912,7 +941,7 @@ class URE_Admin_Menu_Access {
         
         return false;
     }
-    // end of exclusions_for_not_selected()
+    // end of exclusion_for_not_selected()
     
     
     public function redirect_blocked_urls() {        
@@ -925,7 +954,7 @@ class URE_Admin_Menu_Access {
             return;
         }        
         
-        $blocked = URE_Admin_Menu::load_data_for_user($current_user);
+        $blocked = URE_Admin_Menu::load_data_for_user( $current_user );
         if (empty($blocked['data'])) {
             return;
         }
@@ -947,6 +976,7 @@ class URE_Admin_Menu_Access {
                 return;
             }          
             if ($this->exclusion_for_not_selected($command1, $blocked['data'])) {
+                $this->remove_welcome_panel($command1, $blocked['data'], 2);
                 return;                
             }                                    
         }
@@ -1268,28 +1298,27 @@ class URE_Admin_Menu_Access {
     public function modify_admin_menu_bar() {
         global $wp_admin_bar;
                 
-        if (empty($wp_admin_bar)) {
+        if ( empty( $wp_admin_bar ) ) {
             return;
         }
         
         $nodes = $wp_admin_bar->get_nodes();
-        if (empty($nodes)) {
+        if ( empty( $nodes ) ) {
             return;
         }
         
-        if ($this->lib->is_super_admin()) {
+        if ( $this->lib->is_super_admin() ) {
             return;
         }        
         
         // remove 'SEO' menu from top bar
-        if (!current_user_can('manage_options')) {
+        if ( !current_user_can('manage_options') ) {
             $wp_admin_bar->remove_menu('wpseo-menu');
         } 
         
         $current_user = wp_get_current_user();
-        $blocked = URE_Admin_Menu::load_data_for_user($current_user);
-        if (empty($blocked)) {
-            echo 'Wow!!!'.PHP_EOL;
+        $blocked = URE_Admin_Menu::load_data_for_user( $current_user );
+        if ( empty( $blocked ) ) {
             return;
         }                
         
@@ -1297,8 +1326,8 @@ class URE_Admin_Menu_Access {
         $this->remove_admin_bar_menu_for_blocked_menu_specials($blocked);
         
         foreach($nodes as $key=>$menu_item) {
-            $command = $this->get_admin_menu_bar_command($menu_item);
-            if (empty($command)) {
+            $command = $this->get_admin_menu_bar_command( $menu_item );
+            if ( empty( $command ) ) {
                 continue;
             }
             

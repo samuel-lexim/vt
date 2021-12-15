@@ -62,7 +62,7 @@ class URE_Front_End_Menu_Access {
         
         wp_enqueue_style('wp-jquery-ui-dialog');
         wp_enqueue_script('jquery-ui-dialog', '', array('jquery-ui-core', 'jquery-ui-button', 'jquery') );
-        wp_register_script('ure-pro-front-end-menu-access', plugins_url('/pro/js/front-end-menu-access.js', URE_PLUGIN_FULL_PATH ) );
+        wp_register_script('ure-pro-front-end-menu-access', plugins_url('/pro/js/front-end-menu-access.js', URE_PLUGIN_FULL_PATH ), array(), URE_VERSION );
         wp_enqueue_script('ure-pro-front-end-menu-access');
         
         wp_localize_script('ure-pro-front-end-menu-access', 'ure_pro_front_end_menu_access_data', array(

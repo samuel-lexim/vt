@@ -343,7 +343,7 @@ class URE_Meta_Boxes {
             return;
         }
         
-        wp_register_script( 'ure-gutenberg', plugins_url( '/pro/js/gutenberg.js', URE_PLUGIN_FULL_PATH ), array(), true, true );
+        wp_register_script( 'ure-gutenberg', plugins_url( '/pro/js/gutenberg.js', URE_PLUGIN_FULL_PATH ), array(), URE_VERSION, true );
         wp_enqueue_script ( 'ure-gutenberg' );
         wp_localize_script( 'ure-gutenberg', 'ure_pro_data', 
                 array(
@@ -463,7 +463,7 @@ class URE_Meta_Boxes {
         ob_start();
 ?>
 <form name="ure_meta_boxes_access_form" id="ure_meta_boxes_access_form" method="POST"
-      action="<?php echo URE_WP_ADMIN_URL . ($network_admin ? 'network/':'')  . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
+      action="<?php echo admin_url() . ($network_admin ? 'network/':'')  . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
 <table id="ure_meta_boxes_access_table" style="width:100%; table-layout:fixed;">
     <th style="color:red;width:7%;"><?php esc_html_e('Block', 'user-role-editor');?></th>
     <th class="ure-cell" style="width:44%;"><?php esc_html_e('Title', 'user-role-editor');?></th>        

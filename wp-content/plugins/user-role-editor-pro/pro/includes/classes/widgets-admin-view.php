@@ -3,12 +3,11 @@
 class URE_Widgets_Admin_View {
 
     private $lib = null;
-    private $controller = null;
+
     
     public function __construct() {
         
         $this->lib = URE_Lib_Pro::get_instance();
-        $this->controller = new URE_Widgets_Admin_Controller();
         
         add_action('ure_role_edit_toolbar_service', array($this, 'add_toolbar_buttons'));
         add_action('ure_load_js', array($this, 'add_js'));
@@ -34,7 +33,7 @@ class URE_Widgets_Admin_View {
 
     
     public function add_js() {
-        wp_register_script( 'ure-widgets-admin-access', plugins_url( '/pro/js/widgets-admin-access.js', URE_PLUGIN_FULL_PATH ) );
+        wp_register_script( 'ure-widgets-admin-access', plugins_url( '/pro/js/widgets-admin-access.js', URE_PLUGIN_FULL_PATH ), array(), URE_VERSION );
         wp_enqueue_script ( 'ure-widgets-admin-access' );
         wp_localize_script( 'ure-widgets-admin-access', 'ure_data_widgets_access',
                 array(
@@ -62,7 +61,7 @@ class URE_Widgets_Admin_View {
 
     private function list_widgets($readonly_mode, $blocked_items) {
         
-        $widgets_list = $this->controller->get_all_widgets();
+        $widgets_list = URE_Widgets_Admin_Controller::get_all_widgets();
 ?>
 <h3><?php esc_html_e('Widgets', 'user_role-editor');?></h3>
 <table id="ure_widgets_access_table">
@@ -97,7 +96,7 @@ class URE_Widgets_Admin_View {
     
 
     private function list_sidebars($readonly_mode, $blocked_items) {
-        $sidebars_list = $this->controller->get_all_sidebars();
+        $sidebars_list = URE_Widgets_Admin_Controller::get_all_sidebars();
 ?>    
 <h3><?php esc_html_e('Sidebars', 'user_role-editor');?></h3>
 <table id="ure_widgets_access_table">
@@ -133,7 +132,7 @@ class URE_Widgets_Admin_View {
     
     public function get_html( WP_User $user=null ) {
                         
-        $allowed_roles = $this->controller->get_allowed_roles( $user );                        
+        $allowed_roles = URE_Widgets_Admin_Controller::get_allowed_roles( $user );                        
         if ( empty( $user ) ) { // request for User Role Editor - work with currently selected role
             $ure_object_type = 'role';
             $ure_object_name = $allowed_roles[0];
@@ -141,7 +140,7 @@ class URE_Widgets_Admin_View {
         } else {
             $ure_object_type = 'user';
             $ure_object_name = $user->user_login;
-            $blocked_items = $this->controller->load_data_for_user( $user );
+            $blocked_items = URE_Widgets_Admin_Controller::load_data_for_user( $user );
         }
         
         $multisite = $this->lib->get('multisite');
@@ -151,7 +150,7 @@ class URE_Widgets_Admin_View {
         ob_start();
 ?>
 <form name="ure_widgets_access_form" id="ure_widgets_access_form" method="POST"
-      action="<?php echo URE_WP_ADMIN_URL . ($network_admin ? 'network/':'') . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
+      action="<?php echo admin_url() . ($network_admin ? 'network/':'') . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
 <span style="font-weight: bold;"><?php echo esc_html_e('Block items:', 'user-role-editor');?></span>&nbsp;&nbsp;
 <input type="radio" name="ure_widgets_admin_access_model" id="ure_widgets_admin_access_model_selected" value="1" 
         <?php echo ($blocked_items['access_model']==1) ? 'checked="checked"' : '';?> > <label for="ure_widgets_admin_access_model_selected"><?php esc_html_e('Selected', 'user-role-editor');?></label>&nbsp; 
@@ -187,7 +186,7 @@ class URE_Widgets_Admin_View {
             $current_object = $allowed_roles[0];
         }
      
-        return array('result'=>'success', 'message'=>'Widgets permissions for '+ $current_object, 'html'=>$html);
+        return array('result'=>'success', 'message'=>'Widgets permissions for '. $current_object, 'html'=>$html);
     }
     // end of get_html()
     

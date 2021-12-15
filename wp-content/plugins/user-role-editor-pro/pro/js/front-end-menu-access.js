@@ -9,14 +9,14 @@ var ure = {};
 
 jQuery(function(){    
     
-    jQuery('.ure_apply_to').click(function(event) {
+    jQuery('.ure_apply_to').on('click', (function(event) {
         ure_selected_roles_refresh(event);
-    });
+    }));
     
-    jQuery('.ure_edit_roles_list').click(function(event) {
+    jQuery('.ure_edit_roles_list').on('click', (function(event) {
         event.preventDefault();
         ure_edit_roles_list_dialog(event);
-    });
+    }));
     
     jQuery(document.body).append('<div id="ure_select_roles_dialog"></div>');
     

@@ -194,7 +194,7 @@ class URE_Other_Roles {
         ob_start();
 ?>
 <form name="ure_other_roles_access_form" id="ure_other_roles_access_form" method="POST"
-      action="<?php echo URE_WP_ADMIN_URL . ($network_admin ? 'network/':'') . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
+      action="<?php echo admin_url() . ($network_admin ? 'network/':'') . URE_PARENT.'?page=users-'.URE_PLUGIN_FILE;?>" >
     <span style="font-weight: bold;"><?php echo esc_html_e('Block roles:', 'user-role-editor');?></span>&nbsp;&nbsp;
     <input type="radio" name="ure_access_model" id="ure_access_model_selected" value="1" 
         <?php echo ($blocked_items['access_model']==1) ? 'checked="checked"' : '';?> > <label for="ure_access_model_selected"><?php esc_html_e('Selected', 'user-role-editor');?></label> 

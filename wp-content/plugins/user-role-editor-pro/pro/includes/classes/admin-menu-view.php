@@ -32,7 +32,7 @@ class URE_Admin_Menu_View {
     
     public static function add_js() {
         
-        wp_register_script('ure-admin-menu-access', plugins_url( '/pro/js/admin-menu-access.js', URE_PLUGIN_FULL_PATH));
+        wp_register_script('ure-admin-menu-access', plugins_url( '/pro/js/admin-menu-access.js', URE_PLUGIN_FULL_PATH ), array(), URE_VERSION );
         wp_enqueue_script ('ure-admin-menu-access');
         wp_localize_script('ure-admin-menu-access', 'ure_data_admin_menu_access', 
                 array(
@@ -185,7 +185,7 @@ class URE_Admin_Menu_View {
         ob_start();
 ?>
 <form name="ure_admin_menu_access_form" id="ure_admin_menu_access_form" method="POST"
-      action="<?php echo URE_WP_ADMIN_URL . ($network_admin ? 'network/':'') . URE_PARENT .'?page=users-'.URE_PLUGIN_FILE;?>" >
+      action="<?php echo admin_url() . ($network_admin ? 'network/':'') . URE_PARENT .'?page=users-'.URE_PLUGIN_FILE;?>" >
     <span style="font-weight: bold;"><?php echo esc_html_e('Block menu items:', 'user-role-editor');?></span>&nbsp;&nbsp;
     <input type="radio" name="ure_admin_menu_access_model" id="ure_admin_menu_access_model_selected" value="1" 
         <?php echo ($blocked_items['access_model']==1) ? 'checked="checked"' : '';?> > <label for="ure_admin_menu_access_model_selected"><?php esc_html_e('Selected', 'user-role-editor');?></label> 

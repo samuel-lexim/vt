@@ -46,10 +46,10 @@ class URE_Post_Types_Own_Caps {
         return $load;
     }
     // end of divi_post_type_load()
-
     
-    public function set_own_caps() {
-        global $wp_post_types;        
+            
+    private function set_cpt_own_caps() {        
+        global $wp_post_types;
         
         $post_types = get_post_types(array(), 'objects');
         $_post_types = $this->lib->_get_post_types();
@@ -60,10 +60,15 @@ class URE_Post_Types_Own_Caps {
             if ($post_type->name=='post' || $post_type->name=='page') { // do not touch built-in post types
                 continue;
             }
-            if ($post_type->capability_type!='post' && $post_type->capability_type!='page') {   // Custom post type use its own capabilities already
+            if ($post_type->capability_type!='post' && $post_type->capability_type!='page') {   // Custom post type uses its own capabilities already
                 continue;
             }
 
+            $do_it = apply_filters( 'ure_set_cpt_own_caps', true, $post_type->name );
+            if ( !$do_it ) {
+                continue;
+            }
+            
             $wp_post_types[$post_type->name]->capability_type = $post_type->name;
             $wp_post_types[$post_type->name]->map_meta_cap = true;
             $cap_object = new stdClass();
@@ -76,7 +81,38 @@ class URE_Post_Types_Own_Caps {
                 $wp_post_types[$post_type->name]->cap->create_posts = $create_posts0;   // restore initial 'upload_files'
             }
         }
+    }
+    // end of set_cpt_own_caps()
+    
+
+    private function set_taxonomies_own_caps() {
+        global $wp_taxonomies;
         
+        $taxonomies = $this->lib->get_custom_taxonomies( 'names' );
+        foreach( $taxonomies as $taxonomy) {
+            $object_type = $wp_taxonomies[$taxonomy]->object_type[0];
+            $do_it_for_cpt = apply_filters( 'ure_set_cpt_own_caps', true, $object_type );
+            if ( !$do_it_for_cpt ) {
+                continue;
+            }
+            $do_it_for_taxonomy = apply_filters( 'ure_set_cpt_taxonomy_own_caps', true, $taxonomy, $object_type );
+            if ( !$do_it_for_taxonomy ) {
+                continue;
+            }
+            
+            $wp_taxonomies[$taxonomy]->cap->manage_terms = 'manage_'. $object_type .'_terms';
+            $wp_taxonomies[$taxonomy]->cap->edit_terms = 'edit_'. $object_type .'_terms';
+            $wp_taxonomies[$taxonomy]->cap->delete_terms = 'delete_'. $object_type .'_terms';
+            $wp_taxonomies[$taxonomy]->cap->assign_terms = 'assign_'. $object_type .'_terms';
+        }
+    }
+    // end of set_taxonomies_own_caps()
+
+    
+    public function set_own_caps() {
+        
+        $this->set_cpt_own_caps();
+        $this->set_taxonomies_own_caps();
     }
     // end of set_own_caps
         

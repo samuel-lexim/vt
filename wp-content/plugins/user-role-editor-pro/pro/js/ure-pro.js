@@ -11,11 +11,11 @@ jQuery(function() {
     }
     jQuery('#ure_update_all_network').button({
         label: ure_data_pro.update_network
-    }).click(function(event) {
+    }).on('click', (function(event) {
         event.preventDefault();
         show_update_network_dialog();
                 
-    });
+    }));
 });
 
 
@@ -54,10 +54,9 @@ function show_update_network_dialog() {
                             document.getElementById('ure_form').appendChild(obj);
                         }
                     }
-                }   // for(...)
-                
-                jQuery('#ure_form').submit();
+                }   // for(...)                                
                 jQuery(this).dialog('close');
+                ure_main.update_role();
             },
             Cancel: function() {
                 jQuery(this).dialog('close');

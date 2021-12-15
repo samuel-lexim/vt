@@ -118,8 +118,9 @@ require_once(URE_PLUGIN_DIR .'pro/includes/classes/editor-ext.php');
 
 
 // User Role Editor Pro Settings - Tools
-require_once(URE_PLUGIN_DIR .'pro/includes/classes/export-roles-csv.php');
-require_once(URE_PLUGIN_DIR .'pro/includes/classes/tools-ext.php');
+require_once( URE_PLUGIN_DIR .'pro/includes/classes/export-roles-csv.php');
+//require_once( URE_PLUGIN_DIR .'pro/includes/classes/import-roles-csv.php');
+require_once( URE_PLUGIN_DIR .'pro/includes/classes/tools-ext.php');
 
 // User Role Editor Pro Settings
 require_once(URE_PLUGIN_DIR .'pro/includes/classes/settings-pro.php');
