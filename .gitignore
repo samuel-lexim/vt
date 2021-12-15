@@ -8,3 +8,6 @@
 *.sql
 *.sqlite
 LICENSE
+/wp-content/uploads/
+/wp-content/upgrade/
+/logs/
