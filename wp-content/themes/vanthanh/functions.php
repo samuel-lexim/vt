@@ -213,15 +213,16 @@ add_action( "manage_post_posts_custom_column", "my_custom_page_columns" );
 // END - Add slug column for PAGE posts
 
 // Start - Images
-add_image_size( 'large', 150, 0, true );
-//add_image_size('medium_large', 120, 0, true);
-add_image_size( 'medium', 150, 0, true );
-add_image_size( 'thumbnail', 150, 0, true );
-
-add_theme_support( 'large' );
-//add_theme_support('medium_large');
-add_theme_support( 'medium' );
-add_theme_support( 'thumbnail' );
+// Remove default image sizes here.
+function remove_extra_image_sizes() {
+	foreach ( get_intermediate_image_sizes() as $size ) {
+		if ( !in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+			remove_image_size( $size );
+		}
+	}
+}
+add_action('init', 'remove_extra_image_sizes');
+update_option('medium_large_size_w',150);
 // END - Images
 
 
