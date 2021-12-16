@@ -211,3 +211,51 @@ add_filter( "manage_post_posts_columns", "page_columns" );
 add_action( "manage_post_posts_custom_column", "my_custom_page_columns" );
 
 // END - Add slug column for PAGE posts
+
+// Start - Images
+add_image_size( 'large', 150, 0, true );
+//add_image_size('medium_large', 120, 0, true);
+add_image_size( 'medium', 150, 0, true );
+add_image_size( 'thumbnail', 150, 0, true );
+
+add_theme_support( 'large' );
+//add_theme_support('medium_large');
+add_theme_support( 'medium' );
+add_theme_support( 'thumbnail' );
+// END - Images
+
+
+
+/**
+ * Add section in admin page
+ * @position function.php
+ */
+if ( function_exists( 'acf_add_options_page' ) ) {
+	acf_add_options_page(
+		array(
+			'page_title' => 'Options Page',
+			'menu_title' => 'Options Page Settings',
+			'menu_slug'  => 'options-page-settings',
+			'capability' => 'edit_posts',
+			'redirect'   => true
+		)
+	);
+
+	acf_add_options_sub_page(
+		array(
+			'page_title'  => 'Header Settings',
+			'menu_title'  => 'Header Settings',
+			'parent_slug' => 'options-page-settings'
+		)
+	);
+	acf_add_options_sub_page(
+		array(
+			'page_title'  => 'Footer Settings',
+			'menu_title'  => 'Footer Settings',
+			'parent_slug' => 'options-page-settings'
+		)
+	);
+}
+
+
+

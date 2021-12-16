@@ -1,0 +1,46 @@
+html {
+  color: #736E6E;
+  font-family: "Helvetica Neue", san-serif, serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.LR_pad {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .LR_pad {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .LR_pad {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .LR_pad {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .LR_pad {
+    max-width: 1400px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
