@@ -3,7 +3,11 @@
 @import "css/layout.css";
 @import "css/header.css";
 @import "css/footer.css";
+@import "css/font-size.css";
+@import "css/section-anhbia.css";
+@import "css/section-trichdan.css";
+
+
 @import "css/page.css";
-@import "css/section.css";
 @import "css/tintuc.css";
 @import "css/sanpham.css";

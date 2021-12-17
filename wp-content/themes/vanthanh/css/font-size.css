@@ -1,0 +1,41 @@
+.trich_dan_section ._title {
+  font-size: 22px;
+}
+
+.trich_dan_section ._summary {
+  font-size: 16px;
+}
+
+.button_link {
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+  .button_link {
+    font-size: 16px;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .trich_dan_section ._title {
+    font-size: 28px;
+  }
+
+  .trich_dan_section ._summary {
+    font-size: 20px;
+  }
+
+
+}
+
+@media only screen and (min-width: 1440px) {
+  .trich_dan_section ._title {
+    font-size: 34px;
+  }
+
+  .trich_dan_section ._summary {
+    font-size: 24px;
+  }
+
+}
