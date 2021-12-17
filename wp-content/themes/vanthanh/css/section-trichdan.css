@@ -1,8 +1,6 @@
 .trich_dan_section {
   background: #39A8E2;
   color: #fff;
-  padding-top: 40px;
-  padding-bottom: 40px;
 }
 
 .trich_dan_section ._img {
@@ -50,11 +48,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .trich_dan_section {
-    padding-top: 5vw;
-    padding-bottom: 5vw;
-  }
-
   .trich_dan_section ._inner {
     display: -webkit-flex;
     display: -moz-flex;
@@ -80,12 +73,13 @@
 }
 
 @media only screen and (min-width: 1440px) {
-  .trich_dan_section {
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
-
   .trich_dan_section ._content:after {
     font-size: 140px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .trich_dan_section ._content {
+    padding-left: 75px;
   }
 }

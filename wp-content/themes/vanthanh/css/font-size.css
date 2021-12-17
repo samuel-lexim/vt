@@ -1,9 +1,17 @@
-.trich_dan_section ._title {
+.h1 {
+  font-size: 28px;
+}
+
+.h2 {
   font-size: 22px;
 }
 
-.trich_dan_section ._summary {
-  font-size: 16px;
+.h3 {
+  font-size: 18px;
+}
+
+.h4 {
+  font-size: 15px;
 }
 
 .button_link {
@@ -11,31 +19,55 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .button_link {
+  .h1 {
+    font-size: 30px;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+
+  .h3 {
+    font-size: 20px;
+  }
+
+  .h4 {
     font-size: 16px;
   }
 
+  .button_link {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-  .trich_dan_section ._title {
-    font-size: 28px;
+  .h1 {
+    font-size: 32px;
   }
 
-  .trich_dan_section ._summary {
-    font-size: 20px;
+  .h2 {
+    font-size: 26px;
+  }
+
+  .h3 {
+    font-size: 22px;
   }
 
 
 }
 
 @media only screen and (min-width: 1440px) {
-  .trich_dan_section ._title {
+  .h1 {
     font-size: 34px;
   }
 
-  .trich_dan_section ._summary {
+  .h2 {
+    font-size: 28px;
+  }
+
+  .h3 {
     font-size: 24px;
   }
+
 
 }
