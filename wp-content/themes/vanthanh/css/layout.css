@@ -9,6 +9,14 @@ html {
   box-sizing: border-box;
 }
 
+a {
+  color: #736E6E;
+}
+
+a:hover, a:visited {
+  color: #39A8E2;
+}
+
 .LR_pad {
   padding-left: 20px;
   padding-right: 20px;
