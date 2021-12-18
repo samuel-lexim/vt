@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-    <div id="main" class="site-main page-main" role="main">
+    <div id="main" class="site-main page-main index-template" role="main">
 
 		<?php
 		// Start the loop.

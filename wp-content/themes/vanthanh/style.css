@@ -9,7 +9,7 @@
 @import "css/section-doilap.css";
 @import "css/section-doitac.css";
 @import "css/section-gioithieu.css";
+@import "css/section-pagination.css";
 
-@import "css/page.css";
-@import "css/tintuc.css";
-@import "css/sanpham.css";
+@import "css/listing-post.css";
+@import "css/listing-product.css";
