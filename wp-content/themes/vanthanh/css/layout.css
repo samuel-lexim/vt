@@ -74,6 +74,14 @@ h4, p {
   padding-bottom: 40px;
 }
 
+.after_header_pad {
+  padding-top: 20px;
+}
+
+.before_footer_pad {
+  padding-bottom: 20px;
+}
+
 .button_link {
   font-family: Roboto, serif;
   display: inline-block;
@@ -98,12 +106,28 @@ h4, p {
     padding-top: 5vw;
     padding-bottom: 5vw;
   }
+
+  .after_header_pad {
+    padding-top: 30px;
+  }
+
+  .before_footer_pad {
+    padding-bottom: 30px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
   .LR_pad {
     padding-left: 7vw;
     padding-right: 7vw;
+  }
+
+  .after_header_pad {
+    padding-top: 40px;
+  }
+
+  .before_footer_pad {
+    padding-bottom: 40px;
   }
 }
 

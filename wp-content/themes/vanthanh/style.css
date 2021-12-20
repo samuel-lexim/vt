@@ -4,6 +4,7 @@
 @import "css/header.css";
 @import "css/footer.css";
 @import "css/font-size.css";
+
 @import "css/section-anhbia.css";
 @import "css/section-trichdan.css";
 @import "css/section-doilap.css";
@@ -11,5 +12,8 @@
 @import "css/section-gioithieu.css";
 @import "css/section-pagination.css";
 
+@import "css/sidebar.css";
 @import "css/listing-post.css";
+@import "css/detail-post.css";
 @import "css/listing-product.css";
+

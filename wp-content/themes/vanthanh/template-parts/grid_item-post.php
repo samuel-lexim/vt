@@ -3,11 +3,8 @@ $link  = esc_url( get_permalink() );
 $type  = get_post_type();
 $title = get_the_title();
 
-//$publishedDate = '<span class="_date">' . get_the_date( 'd' ) .
-//                 '</span><span class="_month">TH ' . get_the_date( 'm' ) . "</span>";
-
 ?>
-<div data-id="post-<?php the_ID(); ?>" class="grid-item-post">
+<div class="grid-item-post" data-id="<?php the_ID(); ?>" data-type="<?= $type ?>">
     <a href="<?= $link ?>">
         <div class="_inner_post">
             <div class="_thumb">
