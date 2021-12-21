@@ -114,6 +114,7 @@ add_action( 'after_setup_theme', 'vanthanh_setup' );
 function vanthanh_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'vanthanh_content_width', 640 );
 }
+
 add_action( 'after_setup_theme', 'vanthanh_content_width', 0 );
 
 /**
@@ -134,6 +135,7 @@ function vanthanh_widgets_init() {
 		)
 	);
 }
+
 add_action( 'widgets_init', 'vanthanh_widgets_init' );
 
 /**
@@ -150,6 +152,7 @@ function vanthanh_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'vanthanh_scripts' );
 
 /**
@@ -182,7 +185,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 // =========================== START CUSTOMIZE
 
 /* Disable WordPress Admin Bar for all users */
-add_filter('show_admin_bar', '__return_false');
+add_filter( 'show_admin_bar', '__return_false' );
 
 
 // Add slug column for PAGE posts
@@ -191,9 +194,9 @@ function page_columns( $columns ) {
 	$add_columns = array(
 		'slug' => 'Slug',
 	);
-	$res = array_slice( $columns, 0, 2, true ) +
-	       $add_columns +
-	       array_slice( $columns, 2, count( $columns ) - 1, true );
+	$res         = array_slice( $columns, 0, 2, true ) +
+	               $add_columns +
+	               array_slice( $columns, 2, count( $columns ) - 1, true );
 
 	return $res;
 }
@@ -217,15 +220,15 @@ add_action( "manage_post_posts_custom_column", "my_custom_page_columns" );
 // Remove default image sizes here.
 function remove_extra_image_sizes() {
 	foreach ( get_intermediate_image_sizes() as $size ) {
-		if ( !in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+		if ( ! in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 			remove_image_size( $size );
 		}
 	}
 }
-add_action('init', 'remove_extra_image_sizes');
-update_option('medium_large_size_w',150);
-// END - Images
 
+add_action( 'init', 'remove_extra_image_sizes' );
+update_option( 'medium_large_size_w', 150 );
+// END - Images
 
 
 /**
@@ -242,7 +245,13 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'redirect'   => true
 		)
 	);
-
+	acf_add_options_sub_page(
+		array(
+			'page_title'  => 'General Settings',
+			'menu_title'  => 'General Settings',
+			'parent_slug' => 'options-page-settings'
+		)
+	);
 	acf_add_options_sub_page(
 		array(
 			'page_title'  => 'Header Settings',
@@ -259,4 +268,30 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 	);
 }
 
+/**
+ * @param $price
+ * @param string $symbol
+ *
+ * @return string
+ */
+function price_format( $price, string $symbol = 'VNĐ' ): string {
+	return number_format( $price ) . ' ' . $symbol;
+}
 
+/**
+ * @return string
+ */
+function render_call_button(): string {
+	$text  = get_field( 'detail_call_text', 'option' );
+	$link  = get_field( 'detail_call_link', 'option' );
+	$link  = $link ?? 'javascript:void(0);';
+	$color = get_field( 'detail_call_color', 'option' );
+	$bg    = get_field( 'detail_call_bg', 'option' );
+	$html  = '';
+	if ( $text ) {
+		$html = '<div class="call_btn"><a href="' . $link .
+		        '" style="background:' . $bg . '; color:' . $color . ';"><div class="call_btn_inner">' . $text . '</div></a></div>';
+	}
+
+	return $html;
+}

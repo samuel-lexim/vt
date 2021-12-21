@@ -1,0 +1,86 @@
+.detail-product-wrap * {
+  color: #000;
+}
+
+.DP_title {
+  font-weight: 400;
+}
+
+.DP_content_list {
+  color: #000;
+}
+
+.DP_heading {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.DP_heading_underline {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.DP_txt {
+  font-weight: 300;
+}
+
+.call_btn {
+
+}
+
+.call_btn > a {
+  text-decoration: none !important;
+  display: inline-block;
+}
+
+.call_btn > a * {
+  color: inherit;
+  background: inherit;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.call_btn > a small {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.call_btn_inner {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 8px 20px;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .call_btn_inner {
+    padding: 8px 25px;
+  }
+  .call_btn > a * {
+    font-size: 18px;
+  }
+  .call_btn > a small {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+
+  .DP_heading {
+    font-size: 22px;
+  }
+
+  .DP_txt {
+    font-weight: 300;
+    font-size: 18px;
+  }
+}
