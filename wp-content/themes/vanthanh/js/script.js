@@ -31,6 +31,24 @@ function svgInit() {
 
 svgInit(); // Convert img to svg
 
+// Start - 404 page
+function reSizeFunction() {
+    let headerHeight = $('#masthead').height();
+    let footerHeight = $('#footerId').height();
+    let windowHeight = $(window).height();
+    let bodyHeight = windowHeight - headerHeight - footerHeight;
+    if (bodyHeight > 0) {
+        $('.site-main').css('min-height', bodyHeight + 'px');
+        $('.error-404.not-found').css('min-height', bodyHeight + 'px');
+    }
+}
+
+$(window).resize(function () {
+    reSizeFunction();
+});
+reSizeFunction();
+// End - 404 page
+
 
 $(document).ready(function () {
     // Start - Header
@@ -54,5 +72,6 @@ $(document).ready(function () {
         }
     });
     // End - Header
+
 
 });

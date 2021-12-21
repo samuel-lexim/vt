@@ -96,6 +96,26 @@ h4, p {
   border-radius: 5px;
 }
 
+.error-404.not-found {
+  width: 100%;
+  min-height: 404px;
+  background: #39A8E2;
+  color: #fff;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: center;
+}
+
 @media only screen and (min-width: 768px) {
   .LR_pad {
     padding-left: 50px;
