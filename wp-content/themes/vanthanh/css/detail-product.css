@@ -2,6 +2,11 @@
   color: #000;
 }
 
+.detail-product-wrap {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
 .DP_title {
   font-weight: 400;
 }
@@ -11,21 +16,28 @@
 }
 
 .DP_heading {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .DP_heading_underline {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
+  border-bottom: 1px solid;
+}
+
+.DP_heading_underline > span {
+  padding-bottom: 12px;
+  display: inline-block;
+  border-bottom: 4px solid #39A8E2;
 }
 
 .DP_txt {
   font-weight: 300;
 }
 
-.call_btn {
-
+.DP_right_summary {
+  margin-bottom: 40px;
 }
 
 .call_btn > a {
@@ -61,26 +73,104 @@
   text-align: center;
 }
 
-@media only screen and (min-width: 768px) {
-  .call_btn_inner {
-    padding: 8px 25px;
-  }
-  .call_btn > a * {
-    font-size: 18px;
-  }
-  .call_btn > a small {
-    font-size: 14px;
-  }
+.DP_summary {
+  margin-bottom: 20px;
 }
 
-@media only screen and (min-width: 1440px) {
+.DP_price_wrap {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
 
+.DP_sale_price {
+  color: #DC2028;
+  font-weight: 500;
+  margin-right: 7vw;
+}
+
+.DP_regular_price {
+  font-weight: 500;
+}
+
+.DP_sale_price + .DP_regular_price {
+  text-decoration: line-through;
+  font-weight: 300;
+}
+
+.DP_specifications {
+  margin-bottom: 20px;
+}
+
+.DP_specifications ._params {
+  padding: 0 0 0 20px;
+}
+
+.DP_specifications ._params li {
+
+}
+
+.DP_specifications ._params li:before {
+  content: "\2022";
+  color: #39A8E2;
+  display: inline-block;
+  width: 22px;
+  margin-left: -20px;
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 992px) {
   .DP_heading {
     font-size: 22px;
   }
 
   .DP_txt {
-    font-weight: 300;
     font-size: 18px;
+  }
+
+  .call_btn_inner {
+    padding: 8px 25px;
+  }
+
+  .call_btn > a * {
+    font-size: 18px;
+  }
+
+  .call_btn > a small {
+    font-size: 14px;
+  }
+
+  .detail-product-wrap {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .DP_gallery {
+    flex: 1 1 50%;
+  }
+
+  .DP_right_summary {
+    flex: 1 1 50%;
+  }
+
+  .detail-product-wrap > *:not(.DP_gallery):not(.DP_right_summary) {
+    flex: 1 1 100%;
   }
 }

@@ -49,10 +49,10 @@ get_header();
 	                <?php } ?>
 
 	                <?php if ($summary) { ?>
-                        <div class="DP_txt"><?= $summary ?></div>
+                        <div class="DP_summary DP_txt"><?= $summary ?></div>
 	                <?php } ?>
 
-                    <div class="DP_price_wrap">
+                    <div class="DP_price_wrap h3">
 	                    <?php if ($sale_price) { ?>
                             <h4 class="DP_sale_price"><?= price_format($sale_price) ?></h4>
 	                    <?php } ?>
