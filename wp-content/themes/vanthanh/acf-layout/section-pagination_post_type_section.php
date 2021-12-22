@@ -57,7 +57,10 @@ if ( isset( $args ) && $args ) { ?>
 							?>
                         </div>
 
-						<?php wp_reset_postdata(); ?>
+						<?php
+                        wp_reset_query();
+						wp_reset_postdata();
+						?>
 					<?php }
 
 				}

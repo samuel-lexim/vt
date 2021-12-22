@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
     // End - Header
 
-    // Product Detail page
+    // Gallery slider on Product Detail page
     $('.slick_gallery').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -124,6 +124,45 @@ $(document).ready(function () {
                     arrows: true
                 }
             }
+        ]
+    });
+
+    // List slider on Section
+    $('.list_slider_slick').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 650,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 950,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4
+                }
+            },
+            {
+                breakpoint: 1500,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 5
+                }
+            },
         ]
     });
 

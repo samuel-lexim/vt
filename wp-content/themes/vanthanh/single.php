@@ -63,7 +63,10 @@ get_header();
 							?>
                         </div>
 
-					<?php } ?>
+					<?php }
+					wp_reset_query();
+					wp_reset_postdata();
+					?>
                 </div>
 
             </div>

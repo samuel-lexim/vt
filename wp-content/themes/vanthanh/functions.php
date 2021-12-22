@@ -303,3 +303,21 @@ function render_call_button(): string {
 function getNoImageSrc(): string {
 	return get_template_directory_uri() . '/images/placeholder.jpg';
 }
+
+
+function get_thumbnail_with_date_label($post = false, $hasDateLabel = false) {
+	if (!$post) {
+		return;
+	}
+	?>
+
+	<div class="post-thumbnail">
+		<?php echo get_the_post_thumbnail($post); ?>
+		<?php if ( $hasDateLabel ) {
+			$publishedDate = '<span class="_date">' . get_the_date( 'd', $post ) .
+			                 '</span><span class="_month">TH ' . get_the_date( 'm', $post ) . "</span>";
+			?>
+            <div class="_publishedDate"><?= $publishedDate ?></div>
+		<?php } ?>
+    </div>
+<?php }

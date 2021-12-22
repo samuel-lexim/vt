@@ -40,6 +40,10 @@
   margin-bottom: 40px;
 }
 
+.slick-gallery-item {
+  border: 1px solid #ccc;
+}
+
 .DP_right_summary {
   margin-bottom: 40px;
 }
