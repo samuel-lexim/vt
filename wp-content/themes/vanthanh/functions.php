@@ -296,3 +296,10 @@ function render_call_button(): string {
 
 	return $html;
 }
+
+/**
+ * @return string
+ */
+function getNoImageSrc(): string {
+	return get_template_directory_uri() . '/images/placeholder.jpg';
+}
