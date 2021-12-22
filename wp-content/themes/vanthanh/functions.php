@@ -214,6 +214,8 @@ function my_custom_page_columns( $column ) {
 
 add_filter( "manage_post_posts_columns", "page_columns" );
 add_action( "manage_post_posts_custom_column", "my_custom_page_columns" );
+add_filter( "manage_vtproduct_posts_columns", "page_columns" );
+add_action( "manage_vtproduct_posts_custom_column", "my_custom_page_columns" );
 
 // END - Add slug column for PAGE posts
 
@@ -280,6 +282,22 @@ function price_format( $price, string $symbol = 'VNĐ' ): string {
 }
 
 /**
+ * @param $post
+ *
+ * @return string
+ */
+function getFinalPrice( $post ) {
+	if ( ! $post ) {
+		return '';
+	}
+	$regular_price = get_field( 'regular_price', $post );
+	$sale_price    = get_field( 'sale_price', $post );
+	$finalPrice    = $sale_price ?? $regular_price;
+
+	return price_format( $finalPrice );
+}
+
+/**
  * @return string
  */
 function render_call_button(): string {
@@ -305,14 +323,14 @@ function getNoImageSrc(): string {
 }
 
 
-function get_thumbnail_with_date_label($post = false, $hasDateLabel = false) {
-	if (!$post) {
+function get_thumbnail_with_date_label( $post = false, $hasDateLabel = false ) {
+	if ( ! $post ) {
 		return;
 	}
 	?>
 
-	<div class="post-thumbnail">
-		<?php echo get_the_post_thumbnail($post); ?>
+    <div class="post-thumbnail">
+		<?php echo get_the_post_thumbnail( $post ); ?>
 		<?php if ( $hasDateLabel ) {
 			$publishedDate = '<span class="_date">' . get_the_date( 'd', $post ) .
 			                 '</span><span class="_month">TH ' . get_the_date( 'm', $post ) . "</span>";

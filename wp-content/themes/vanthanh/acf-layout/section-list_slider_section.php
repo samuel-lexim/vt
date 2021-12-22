@@ -48,11 +48,12 @@ if ( isset( $args ) && $args ) { ?>
 									$link  = esc_url( get_permalink( $news_post ) );
 									$type  = get_post_type( $news_post );
 									$title = $news_post->post_title;
+									$postId = $news_post->ID;
 
 									?>
                                     <div class="list_slider_slick_item">
 
-                                        <div class="grid-item-post" data-id="<?php the_ID(); ?>" data-type="<?= $type ?>">
+                                        <div class="grid-item-post" data-id="<?= $postId ?>" data-type="<?= $type ?>">
                                             <a href="<?= $link ?>">
                                                 <div class="_inner_post">
                                                     <div class="_thumb">

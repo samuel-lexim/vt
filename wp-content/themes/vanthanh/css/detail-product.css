@@ -195,5 +195,17 @@
   .DP_right_summary {
     padding-left: 60px;
   }
+}
+
+/* vt-product slider */
+.related_products_slick {
+
+}
+
+.related_products_slick .slick-slide {
+  margin: 0 15px;
+}
+
+.vt_product_item {
 
 }

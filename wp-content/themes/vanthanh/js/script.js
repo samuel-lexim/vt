@@ -166,4 +166,37 @@ $(document).ready(function () {
         ]
     });
 
+    // Related products slider on Detail page
+    $('.related_products_slick').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 650,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 950,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4
+                }
+            }
+        ]
+    });
+
+
 });
