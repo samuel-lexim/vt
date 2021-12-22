@@ -73,5 +73,58 @@ $(document).ready(function () {
     });
     // End - Header
 
+    // Product Detail page
+    $('.slick_gallery').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slick_gallery-nav'
+    });
+
+    $('.slick_gallery-nav').slick({
+        asNavFor: '.slick_gallery',
+        infinite: true,
+        dots: true,
+        arrows: false,
+        centerMode: true,
+        focusOnSelect: true,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 650,
+                settings: {
+                    slidesToShow: 6,
+                    dots: false,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 4,
+                    dots: false,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 5,
+                    dots: false,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 6,
+                    dots: false,
+                    arrows: true
+                }
+            }
+        ]
+    });
 
 });

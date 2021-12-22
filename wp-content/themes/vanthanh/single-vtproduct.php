@@ -40,7 +40,19 @@ get_header();
 
             <div class="LR_pad detail-product-wrap">
                 <div class="DP_gallery">
-
+                    <?php if ($gallery && is_array($gallery)) { ?>
+                    <div class="slick_gallery">
+                        <?php foreach ($gallery as $image) {
+                            ?>
+                            <div class="slick-gallery-item"><img src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>"/></div>
+                        <?php } ?>
+                    </div>
+                    <div class="slick_gallery-nav slick_nav">
+                        <?php foreach ($gallery as $image) { ?>
+                            <div class="slick-gallery-item"><img src="<?= $image['sizes']['thumbnail'] ?>" alt="<?= $image['alt'] ?>"/></div>
+                        <?php } ?>
+                    </div>
+                    <?php } ?>
                 </div>
 
                 <div class="DP_right_summary">

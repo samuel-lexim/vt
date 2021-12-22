@@ -146,6 +146,7 @@ function vanthanh_scripts() {
 	wp_style_add_data( 'vanthanh-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'vanthanh-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'slick-1.8.0', get_template_directory_uri() . '/js/slick.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'vanthanh-script', get_template_directory_uri() . '/js/script.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
