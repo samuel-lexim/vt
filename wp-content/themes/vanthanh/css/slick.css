@@ -90,6 +90,7 @@
 
 .slick-initialized .slick-slide {
   display: block;
+  border: 1px solid #ccc;
 }
 
 .slick-loading .slick-slide {
