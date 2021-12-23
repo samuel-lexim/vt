@@ -110,48 +110,43 @@ get_header();
 						<?php } ?>
                     </div>
 				<?php } ?>
+            </div>
 
-				<?php if ( $related_products && is_array( $related_products ) ) {
-					?>
+			<?php if ( $related_products && is_array( $related_products ) ) { ?>
+            <div class="DP_related_products scheme_blue">
+                <div class="LR_pad top_pad">
+                    <div class="_inner">
+                        <h2 class="_section_title s24">Sản phẩm liên quan</h2>
 
-
-                    <div class="DP_related_products">
-                        <div class="LR_pad top_pad">
-                            <div class="_inner">
-                                <h2 class="_section_title s24">Sản phẩm liên quan</h2>
-
-                                <div class="related_products_slick slick_top_arrow">
-									<?php foreach ( $related_products as $vt_product ) {
-										$link   = esc_url( get_permalink( $vt_product ) );
-										$type   = get_post_type( $vt_product );
-										$title  = $vt_product->post_title;
-										$postId = $vt_product->ID;
+                        <div class="related_products_slick slick_top_arrow">
+							<?php foreach ( $related_products as $vt_product ) {
+								$link   = esc_url( get_permalink( $vt_product ) );
+								$type   = get_post_type( $vt_product );
+								$title  = $vt_product->post_title;
+								$postId = $vt_product->ID;
 
 
-										?>
-                                        <div class="related_products_slick_item">
-                                            <div class="grid-item-product" data-id="<?= $postId ?>" data-type="<?= $type ?>">
-                                                <div class="_inner_post">
-                                                    <div class="_thumb">
-	                                                    <?php echo get_the_post_thumbnail( $vt_product, 'medium' ); ?>
-                                                    </div>
-
-                                                    <h4 class="_name s18"><?= $title ?></h4>
-                                                    <h4 class="_price s18 blue"><?= 'Giá: ' . getFinalPrice( $vt_product ) ?></h4>
-			                                        <?= render_blue_button( $link ) ?>
-                                                </div>
+								?>
+                                <div class="related_products_slick_item">
+                                    <div class="grid-item-product" data-id="<?= $postId ?>" data-type="<?= $type ?>">
+                                        <div class="_inner_post">
+                                            <div class="_thumb">
+												<?php echo get_the_post_thumbnail( $vt_product, 'medium' ); ?>
                                             </div>
+
+                                            <h4 class="_name s18"><?= $title ?></h4>
+                                            <h4 class="_price s18 blue"><?= 'Giá: ' . getFinalPrice( $vt_product ) ?></h4>
+											<?= render_blue_button( $link ) ?>
                                         </div>
-
-									<?php } ?>
-
+                                    </div>
                                 </div>
-                            </div>
+
+							<?php } ?>
                         </div>
                     </div>
-				<?php } ?>
-
+                </div>
             </div>
+		<?php } ?>
 
 		<?php endwhile; ?>
 

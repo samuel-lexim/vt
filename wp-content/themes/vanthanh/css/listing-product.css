@@ -21,6 +21,9 @@
 .grid-item-product ._thumb img {
   display: block;
   margin: 0 auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 /* End - Grid item */

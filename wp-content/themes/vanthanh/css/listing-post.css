@@ -54,6 +54,12 @@
   margin-bottom: 15px;
 }
 
+.grid-item-post ._thumb img {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
 .grid-item-post ._publishedDate {
   position: absolute;
   bottom: 12px;

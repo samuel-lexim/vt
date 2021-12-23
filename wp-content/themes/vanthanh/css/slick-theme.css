@@ -177,6 +177,7 @@
 .slick_top_arrow .slick-prev, .slick_top_arrow .slick-next {
   width: 30px;
   height: 30px;
+  background: transparent;
 }
 
 .slick_top_arrow .slick-next {
@@ -197,7 +198,7 @@
   display: block;
   font-size: 0;
   background-color: transparent;
-  background-image: url("../images/slick-circle-right.svg");
+  background-image: url("../images/slick-circle-left.svg");
 }
 
 @media only screen and (max-width: 650px) {
