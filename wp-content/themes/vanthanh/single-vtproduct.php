@@ -130,18 +130,15 @@ get_header();
 
 										?>
                                         <div class="related_products_slick_item">
-
-                                            <div class="vt_product_item" data-id="<?= $postId ?>" data-type="<?= $type ?>">
+                                            <div class="grid-item-product" data-id="<?= $postId ?>" data-type="<?= $type ?>">
                                                 <div class="_inner_post">
                                                     <div class="_thumb">
-														<?php echo get_the_post_thumbnail( $vt_product, 'medium' ); ?>
+	                                                    <?php echo get_the_post_thumbnail( $vt_product, 'medium' ); ?>
                                                     </div>
 
                                                     <h4 class="_name s18"><?= $title ?></h4>
-                                                    <h4 class="_price s18"><?= getFinalPrice( $vt_product ) ?></h4>
-                                                    <a href="<?= $link ?>">
-                                                        <h4 class="_name h4 ">Xem chi tiết</h4>
-                                                    </a>
+                                                    <h4 class="_price s18 blue"><?= 'Giá: ' . getFinalPrice( $vt_product ) ?></h4>
+			                                        <?= render_blue_button( $link ) ?>
                                                 </div>
                                             </div>
                                         </div>
