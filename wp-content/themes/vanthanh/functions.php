@@ -336,7 +336,7 @@ function render_call_button(): string {
 }
 
 function render_blue_button( $link, $text = 'Xem chi tiết' ): string {
-	$html = '<div class="btn fw500 blue_btn"><a href="' . $link . '"><div class="btn_inner">' . $text . '</div></a></div>';
+	$html = '<div class="btn fw500 s16 blue_btn"><a href="' . $link . '"><div class="btn_inner">' . $text . '</div></a></div>';
 
 	return $html;
 }
