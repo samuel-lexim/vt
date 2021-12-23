@@ -192,12 +192,23 @@ add_filter( 'show_admin_bar', '__return_false' );
 // Add slug column for PAGE posts
 add_filter( "manage_page_posts_columns", "page_columns" );
 function page_columns( $columns ) {
+	$type        = get_post_type();
 	$add_columns = array(
 		'slug' => 'Slug',
 	);
-	$res         = array_slice( $columns, 0, 2, true ) +
-	               $add_columns +
-	               array_slice( $columns, 2, count( $columns ) - 1, true );
+
+	if ( $type === 'vtproduct' ) {
+		$more_columns = array(
+			'price'      => 'Regular Price',
+			'sale_price' => 'Sale Price'
+		);
+		$add_columns  = array_merge( $add_columns, $more_columns );
+	}
+
+	$res = array_slice( $columns, 0, 2, true ) +
+	       $add_columns +
+	       array_slice( $columns, 2, count( $columns ) - 1, true );
+
 
 	return $res;
 }
@@ -208,6 +219,14 @@ function my_custom_page_columns( $column ) {
 	switch ( $column ) {
 		case 'slug' :
 			echo $post->post_name;
+			break;
+		case 'price' :
+			$regular_price = get_field( 'regular_price', $post );
+			echo number_format( floatval( $regular_price ) );
+			break;
+		case 'sale_price' :
+			$sale_price = get_field( 'sale_price', $post );
+			echo number_format( floatval( $sale_price ) );
 			break;
 	}
 }
@@ -278,23 +297,24 @@ if ( function_exists( 'acf_add_options_page' ) ) {
  * @return string
  */
 function price_format( $price, string $symbol = 'VNĐ' ): string {
-	return number_format( $price ) . ' ' . $symbol;
+	return number_format( floatval( $price ) ) . ' ' . $symbol;
 }
 
 /**
  * @param $post
+ * @param string $symbol
  *
  * @return string
  */
-function getFinalPrice( $post ) {
+function getFinalPrice( $post, string $symbol = 'VNĐ' ): string {
 	if ( ! $post ) {
 		return '';
 	}
 	$regular_price = get_field( 'regular_price', $post );
 	$sale_price    = get_field( 'sale_price', $post );
-	$finalPrice    = $sale_price ?? $regular_price;
+	$finalPrice    = $sale_price && intval( $sale_price ) > 0 ? $sale_price : $regular_price;
 
-	return price_format( $finalPrice );
+	return price_format( $finalPrice, $symbol );
 }
 
 /**
@@ -308,11 +328,23 @@ function render_call_button(): string {
 	$bg    = get_field( 'detail_call_bg', 'option' );
 	$html  = '';
 	if ( $text ) {
-		$html = '<div class="call_btn"><a href="' . $link .
+		$html = '<div class="call_btn btn"><a href="' . $link .
 		        '" style="background:' . $bg . '; color:' . $color . ';"><div class="call_btn_inner">' . $text . '</div></a></div>';
 	}
 
 	return $html;
+}
+
+function render_blue_button( $link, $text = 'Xem chi tiết' ): string {
+	$html = '<div class="btn blue_btn"><a href="' . $link . '"><div class="btn_inner">' . $text . '</div></a></div>';
+
+	return $html;
+}
+
+// Remove prefix in archive title
+add_action( 'get_the_archive_title_prefix', 'get_the_archive_title_prefix_action' );
+function get_the_archive_title_prefix_action( $prefix ): string {
+	return '';
 }
 
 /**
@@ -322,8 +354,11 @@ function getNoImageSrc(): string {
 	return get_template_directory_uri() . '/images/placeholder.jpg';
 }
 
-
-function get_thumbnail_with_date_label( $post = false, $hasDateLabel = false ) {
+/**
+ * @param false $post
+ * @param false $hasDateLabel
+ */
+function get_thumbnail_with_date_label( $post = false, bool $hasDateLabel = false ) {
 	if ( ! $post ) {
 		return;
 	}
