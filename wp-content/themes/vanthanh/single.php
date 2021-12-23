@@ -54,7 +54,7 @@ get_header();
 					$heading    = $type === 'post' ? 'TIN TỨC MỚI' : 'NEW ' . $type;
 
 					if ( $postsList->have_posts() ) { ?>
-                        <h3 class="sidebar_heading h3 blue"><?= $heading ?></h3>
+                        <h3 class="sidebar_heading s24 fw700 blue"><?= $heading ?></h3>
                         <div class="sidebar-row-list">
 							<?php while ( $postsList->have_posts() ) :
 								$postsList->the_post();

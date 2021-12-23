@@ -8,11 +8,11 @@ if ( isset( $args ) && $args ) { ?>
 
             <div class="_inner">
 				<?php if ( $args['title'] ) { ?>
-                    <h2 class="_title h2 blue"><?= $args['title'] ?></h2>
+                    <h2 class="_title s30 fw700 blue"><?= $args['title'] ?></h2>
 				<?php } ?>
 
 				<?php if ( $args['summary'] ) { ?>
-                    <div class="_summary h4 fw300"><?= $args['summary'] ?></div>
+                    <div class="_summary s24 fw400"><?= $args['summary'] ?></div>
 				<?php } ?>
 
 				<?php if ( $args['post_type'] ) {

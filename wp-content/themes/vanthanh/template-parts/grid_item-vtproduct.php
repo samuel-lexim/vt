@@ -10,8 +10,8 @@ $title = get_the_title();
 			<?php the_post_thumbnail( 'medium' ); ?>
         </div>
 
-        <h4 class="_name s18"><?= $title ?></h4>
-        <h4 class="_price s18 blue"><?= 'Giá: ' . getFinalPrice( get_the_ID() ) ?></h4>
+        <h4 class="_name fw500 s18"><?= $title ?></h4>
+        <h4 class="_price fw700 s18 blue"><?= 'Giá: ' . getFinalPrice( get_the_ID() ) ?></h4>
 		<?= render_blue_button( $link ) ?>
     </div>
 </div>

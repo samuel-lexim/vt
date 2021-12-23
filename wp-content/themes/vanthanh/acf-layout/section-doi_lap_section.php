@@ -25,11 +25,11 @@ if ( isset( $args ) && $args && $args['grid_list'] && is_array( $args['grid_list
                     <div class="_right _col ">
                         <div class="_col_inner">
 							<?php if ( $grid['section_title'] ) { ?>
-                                <h2 class="_title h2 blue"><?= $grid['section_title'] ?></h2>
+                                <h2 class="_title s28 fw700 blue"><?= $grid['section_title'] ?></h2>
 							<?php } ?>
 
 							<?php if ( $grid['summary'] ) { ?>
-                                <div class="_summary h3"><?= $grid['summary'] ?></div>
+                                <div class="_summary fw400 s24"><?= $grid['summary'] ?></div>
 							<?php } ?>
                         </div>
                     </div>

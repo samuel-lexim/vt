@@ -43,10 +43,6 @@
   color: #fff;
 }
 
-.trich_dan_section .button_link:hover {
-  color: #DC2028;
-}
-
 @media only screen and (min-width: 768px) {
   .trich_dan_section ._inner {
     display: -webkit-flex;

@@ -13,13 +13,13 @@
     <header class="entry-header">
 		<?php
 		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title h3 blue">', '</h1>' );
+			the_title( '<h1 class="entry-title s24 fw700 blue">', '</h1>' );
 		else :
-			the_title( '<h2 class="entry-title">', '</h2>' );
+			the_title( '<h2 class="entry-title s24 fw700">', '</h2>' );
 		endif;
 		?>
 
-        <div class="entry-meta">
+        <div class="entry-meta s12 fw500">
 			<?php
 			vanthanh_posted_on();
 			//vanthanh_posted_by();
@@ -29,7 +29,7 @@
 
 	<?php // vanthanh_post_thumbnail(); ?>
 
-    <div class="entry-content">
+    <div class="entry-content s18 fw300 lh_22">
 		<?php
 		the_content(
 			sprintf(

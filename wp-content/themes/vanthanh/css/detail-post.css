@@ -1,28 +1,17 @@
-.detail-page-2col-wrap {
-}
-
 .left_detailPage {
   margin-bottom: 30px;
-}
-
-.right_detailPage {
-}
-
-.sidebar-wrap {
 }
 
 .posted-on {
   background: #E5E5E5;
   padding: 5px 7px;
-  border-radius: 5px;
-  font-size: 12px;
   color: #39A8E2;
-  font-weight: 500;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .left_detailPage .entry-content {
-  line-height: 2;
-  font-weight: 300;
   color: #000;
 }
 
@@ -48,12 +37,8 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
-}
-
 @media only screen and (min-width: 1440px) {
   .left_detailPage {
     padding-right: 55px;
   }
-
 }

@@ -336,7 +336,7 @@ function render_call_button(): string {
 }
 
 function render_blue_button( $link, $text = 'Xem chi tiết' ): string {
-	$html = '<div class="btn blue_btn"><a href="' . $link . '"><div class="btn_inner">' . $text . '</div></a></div>';
+	$html = '<div class="btn fw500 blue_btn"><a href="' . $link . '"><div class="btn_inner">' . $text . '</div></a></div>';
 
 	return $html;
 }
@@ -379,7 +379,7 @@ function get_thumbnail_with_date_label( $post = false, bool $hasDateLabel = fals
 			$publishedDate = '<span class="_date">' . get_the_date( 'd', $post ) .
 			                 '</span><span class="_month">TH ' . get_the_date( 'm', $post ) . "</span>";
 			?>
-            <div class="_publishedDate"><?= $publishedDate ?></div>
+            <div class="_publishedDate s16 fw700"><?= $publishedDate ?></div>
 		<?php } ?>
     </div>
 <?php }

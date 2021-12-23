@@ -16,13 +16,7 @@
   color: #000;
 }
 
-.DP_heading {
-  font-size: 18px;
-  font-weight: 500;
-}
-
 .DP_heading_underline {
-  font-size: 18px;
   font-weight: 500;
   border-bottom: 1px solid;
 }
@@ -68,12 +62,7 @@
 
 .DP_sale_price {
   color: #DC2028;
-  font-weight: 500;
   margin-right: 7vw;
-}
-
-.DP_regular_price {
-  font-weight: 500;
 }
 
 .DP_sale_price + .DP_regular_price {
@@ -136,14 +125,6 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .DP_heading {
-    font-size: 22px;
-  }
-
-  .DP_txt {
-    font-size: 18px;
-  }
-
   .detail-product-wrap {
     display: -webkit-flex;
     display: -moz-flex;

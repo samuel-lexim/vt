@@ -16,7 +16,7 @@ $footer_copyright = get_field( 'copyright', 'option' );
 ?>
 
 <footer id="footerId" class="site-footer">
-    <div class="info_wrap ">
+    <div class="info_wrap fw500">
         <div class="info_wrap_inner LR_pad">
             <?php the_custom_logo(); ?>
 

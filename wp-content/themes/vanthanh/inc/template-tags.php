@@ -131,7 +131,7 @@ if ( ! function_exists( 'vanthanh_post_thumbnail' ) ) :
 					$publishedDate = '<span class="_date">' . get_the_date( 'd' ) .
 					                 '</span><span class="_month">TH ' . get_the_date( 'm' ) . "</span>";
 					?>
-                    <div class="_publishedDate"><?= $publishedDate ?></div>
+                    <div class="_publishedDate s16 fw700"><?= $publishedDate ?></div>
 
 				<?php } ?>
 

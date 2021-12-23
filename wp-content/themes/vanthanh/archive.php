@@ -20,7 +20,7 @@ get_header();
             <div class="anh_bia_section">
                 <div class="_inner" style="background-image: url('<?= $hero_bg ?>')">
 					<?php
-					the_archive_title( '<h1 class="_title blue h0">', '</h1>' );
+					the_archive_title( '<h1 class="_title blue fw700 h0">', '</h1>' );
 					?>
                 </div>
             </div>

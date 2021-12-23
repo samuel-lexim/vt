@@ -7,7 +7,7 @@ if ( isset( $args ) && $args ) { ?>
         <div class="LR_pad top_pad">
             <div class="_inner">
 				<?php if ( $args['heading'] ) { ?>
-                    <h2 class="_section_title h2 blue"><?= $args['heading'] ?></h2>
+                    <h2 class="_section_title s28 fw700 blue"><?= $args['heading'] ?></h2>
 				<?php } ?>
 
 				<?php

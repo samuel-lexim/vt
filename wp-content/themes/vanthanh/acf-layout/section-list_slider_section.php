@@ -7,7 +7,7 @@ if ( isset( $args ) && $args ) { ?>
         <div class="LR_pad top_pad">
             <div class="_inner">
 				<?php if ( $args['section_title'] ) { ?>
-                    <h2 class="_section_title h2 blue"><?= $args['section_title'] ?></h2>
+                    <h2 class="_section_title s28 fw700 blue"><?= $args['section_title'] ?></h2>
 				<?php } ?>
 
 				<?php
@@ -60,7 +60,7 @@ if ( isset( $args ) && $args ) { ?>
 														<?php get_thumbnail_with_date_label( $news_post, true ); ?>
                                                     </div>
 
-                                                    <h4 class="_name h4 gray"><?= $title ?></h4>
+                                                    <h4 class="_name s16 fw700 gray"><?= $title ?></h4>
                                                 </div>
                                             </a>
                                         </div>

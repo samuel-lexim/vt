@@ -11,7 +11,7 @@ $title = get_the_title();
 	            <?php vanthanh_post_thumbnail(true); ?>
             </div>
 
-            <h4 class="_name h4 gray"><?= $title ?></h4>
+            <h4 class="_name s16 fw700 gray"><?= $title ?></h4>
         </div>
     </a>
 </div>

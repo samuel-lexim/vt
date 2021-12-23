@@ -34,7 +34,7 @@ get_header();
 				<?php if ( $hero_img_url ) { ?>
                     <div class="_inner" style="background-image: url(<?= $hero_img_url ?>)">
 						<?php if ( $category_title ) { ?>
-                            <h2 class="_title blue h0"><?= $category_title ?></h2>
+                            <h2 class="_title blue fw700 h0"><?= $category_title ?></h2>
 						<?php } ?>
                     </div>
 				<?php } ?>
@@ -68,10 +68,10 @@ get_header();
 
                     <div class="DP_price_wrap h3">
 						<?php if ( $sale_price ) { ?>
-                            <h4 class="DP_sale_price"><?= price_format( $sale_price ) ?></h4>
+                            <h4 class="DP_sale_price fw500"><?= price_format( $sale_price ) ?></h4>
 						<?php } ?>
 						<?php if ( $regular_price ) { ?>
-                            <h4 class="DP_regular_price"><?= price_format( $regular_price ) ?></h4>
+                            <h4 class="DP_regular_price fw500"><?= price_format( $regular_price ) ?></h4>
 						<?php } ?>
                     </div>
 
@@ -80,13 +80,13 @@ get_header();
                 </div>
 
 				<?php if ( $specifications || $content_list ) { ?>
-                    <h2 class="DP_heading_underline"><span>Chi tiết sản phẩm</span></h2>
+                    <h2 class="DP_heading_underline fw500 s24"><span>Chi tiết sản phẩm</span></h2>
 				<?php } ?>
 
 				<?php if ( $specifications && is_array( $specifications ) ) { ?>
                     <div class="DP_specifications">
-                        <h3 class="DP_heading">Thông số kỹ thuật</h3>
-                        <ul class="DP_txt _params">
+                        <h3 class="DP_heading fw500 s22">Thông số kỹ thuật</h3>
+                        <ul class="DP_txt _params s18">
 							<?php foreach ( $specifications as $param ) { ?>
 								<?php if ( isset( $param['param'] ) && $param['param'] ) { ?>
                                     <li class="DP_txt"><?= $param['param'] ?></li>
@@ -100,12 +100,12 @@ get_header();
                     <div class="DP_content_list">
 						<?php foreach ( $content_list as $item ) { ?>
 							<?php if ( isset( $item['heading'] ) && $item['heading'] ) { ?>
-                                <h3 class="DP_heading">
+                                <h3 class="DP_heading fw500 s22">
 									<?= $item['heading'] ?>
                                 </h3>
 							<?php } ?>
 							<?php if ( isset( $item['content'] ) && $item['content'] ) { ?>
-                                <div class="DP_txt"><?= $item['content'] ?></div>
+                                <div class="DP_txt s18"><?= $item['content'] ?></div>
 							<?php } ?>
 						<?php } ?>
                     </div>
@@ -116,7 +116,7 @@ get_header();
             <div class="DP_related_products scheme_blue">
                 <div class="LR_pad top_pad">
                     <div class="_inner">
-                        <h2 class="_section_title s24">Sản phẩm liên quan</h2>
+                        <h2 class="_section_title s24 fw500">Sản phẩm liên quan</h2>
 
                         <div class="related_products_slick slick_top_arrow">
 							<?php foreach ( $related_products as $vt_product ) {

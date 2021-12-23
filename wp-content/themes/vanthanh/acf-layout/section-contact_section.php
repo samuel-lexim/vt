@@ -40,7 +40,7 @@ if ( isset( $args ) && $args ) { ?>
                                     <div class="white-circle"><?= $imgSrc ?></div>
 								<?php } ?>
 								<?php if ( $contact['content'] ) { ?>
-                                    <div class="_txt_area s20"><?= $contact['content'] ?></div>
+                                    <div class="_txt_area s20 fw500"><?= $contact['content'] ?></div>
 								<?php } ?>
                             </div>
 						<?php } ?>

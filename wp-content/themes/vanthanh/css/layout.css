@@ -3,6 +3,7 @@ html {
   font-family: "Helvetica Neue", Roboto, serif;
   line-height: 1.75;
   font-size: 16px;
+  font-weight: 300;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -moz-box-sizing: border-box;
@@ -36,6 +37,30 @@ h3 {
 
 h4, p {
   margin-bottom: 10px;
+}
+
+.lh_22 {
+  line-height: 2.2;
+}
+
+.lh_2, .lh_20 {
+  line-height: 2;
+}
+
+.lh_175 {
+  line-height: 1.75;
+}
+
+.lh_15 {
+  line-height: 1.5;
+}
+
+.lh_14 {
+  line-height: 1.4;
+}
+
+.lh_1, .lh_10 {
+  line-height: 1;
 }
 
 .fw300 {

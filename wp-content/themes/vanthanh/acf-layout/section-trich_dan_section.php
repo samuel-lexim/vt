@@ -14,15 +14,15 @@ if ( isset( $args ) && $args ) {
 
             <div class="_content">
 				<?php if ( $args['section_title'] ) { ?>
-                    <h2 class="_title h1"><?= $args['section_title'] ?></h2>
+                    <h2 class="_title s34 fw700"><?= $args['section_title'] ?></h2>
 				<?php } ?>
 
 				<?php if ( $args['summary'] ) { ?>
-                    <div class="_summary h3"><?= $args['summary'] ?></div>
+                    <div class="_summary s24 fw400"><?= $args['summary'] ?></div>
 				<?php } ?>
 
 				<?php if ( $args['button_text'] && $args['button_link'] ) { ?>
-                    <a href="<?= $args['button_link'] ?>" class="button_link"><?= $args['button_text'] ?></a>
+                    <a href="<?= $args['button_link'] ?>" class="button_link s16 fw500"><?= $args['button_text'] ?></a>
 				<?php } ?>
             </div>
         </div>
