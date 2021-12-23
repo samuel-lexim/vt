@@ -25,7 +25,7 @@ get_header();
 			$category_title = '';
 			if ( isset( $categories[0] ) ) {
 				$category_image = get_field( 'category_image', $categories[0] );
-				$hero_img_url   = $category_image['url'] ?? '';
+				$hero_img_url   = $category_image['url'] ?? getDefaultImg();
 				$category_title = $categories[0]->name ?? '';
 			}
 			?>

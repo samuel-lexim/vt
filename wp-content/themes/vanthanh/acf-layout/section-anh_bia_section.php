@@ -6,15 +6,16 @@ if ( isset( $args ) && $args ) {
 	?>
 
     <div class="anh_bia_section">
-		<?php if ( $args['hero_img'] ) { ?>
+		<?php
+		$bg = $args['hero_img'] && isset( $args['hero_img']["url"] ) ? $args['hero_img']["url"] : getDefaultImg();
+		?>
 
-            <div class="_inner <?= $class ?>" style="background-image: url(<?= $args['hero_img']["url"] ?>)">
-				<?php if ( $args['hero_title'] ) { ?>
-                    <h1 class="_title blue h0"><?= $args['hero_title'] ?></h1>
-				<?php } ?>
-            </div>
+        <div class="_inner <?= $class ?>" style="background-image: url(<?= $bg ?>)">
+			<?php if ( $args['hero_title'] ) { ?>
+                <h1 class="_title blue h0"><?= $args['hero_title'] ?></h1>
+			<?php } ?>
+        </div>
 
-		<?php } ?>
     </div>
 
 <?php } ?>

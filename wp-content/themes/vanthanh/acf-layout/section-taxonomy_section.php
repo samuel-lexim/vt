@@ -33,9 +33,10 @@ if ( isset( $args ) && $args ) { ?>
 								} else {
 								    $cat_img_src = getNoImageSrc();
 								}
+								$catLink =  get_category_link($cat);
 								?>
                                 <div class="taxonomy_section_list_item">
-                                    <a href="<?= $cat->slug ?>">
+                                    <a href="<?= $catLink ?>" data-slug="<?= $cat->slug ?>">
                                         <div class="_cat_img" style="background-image: url('<?= $cat_img_src ?>')"></div>
                                         <h3 class="_heading s18"><?= $cat->name ?></h3>
                                     </a>

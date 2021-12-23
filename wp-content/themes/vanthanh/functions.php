@@ -355,6 +355,15 @@ function getNoImageSrc(): string {
 }
 
 /**
+ * @param string $defaultImg
+ *
+ * @return string
+ */
+function getDefaultImg( string $defaultImg = 'default-hero.jpg'): string {
+	return get_template_directory_uri() . '/images/'. $defaultImg;
+}
+
+/**
  * @param false $post
  * @param false $hasDateLabel
  */

@@ -15,7 +15,7 @@ get_header();
 			<?php
 			$cat            = get_queried_object();
 			$category_image = get_field( 'category_image', $cat );
-			$hero_bg        = $category_image['url'] ?? '';
+			$hero_bg        = $category_image['url'] ?? getDefaultImg();
 			?>
             <div class="anh_bia_section">
                 <div class="_inner" style="background-image: url('<?= $hero_bg ?>')">
