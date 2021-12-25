@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-light-italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('../fonts/helvetica-neue-bold-italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 300;
+  src: url("../fonts/Gotham-Thin.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 500;
+  src: url("../fonts/Gotham-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 700;
+  src: url("../fonts/Gotham-Ultra.otf") format("opentype");
+}
